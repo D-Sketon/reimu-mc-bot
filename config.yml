@@ -1,0 +1,18 @@
+
+server:
+  port: 4000
+
+serverTap:
+  http: http://localhost:4567/v1
+  websocket: ws://localhost:4567/v1
+
+bot:
+  http: http://localhost:3000
+  websocket: ws://localhost:3000
+
+groupId: 
+botId: 
+whiteList:
+blackList:
+
+deathLog: false
