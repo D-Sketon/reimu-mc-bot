@@ -1,5 +1,5 @@
 # reimu-mc-bot
-A Minecraft bot for the Peach Colony, based on NapCat and [ServerTap](https://github.com/servertap-io/servertap) v0.1.3
+A Minecraft bot for the Peach Colony, based on NapCat, [ServerTap](https://github.com/servertap-io/servertap) v0.1.3 and [DeathMessages](https://github.com/Winds-Studio/DeathMessages)(death log support)
 
 ## Usage
 ```bash
