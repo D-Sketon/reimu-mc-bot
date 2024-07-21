@@ -1,6 +1,5 @@
-
 server:
-  port: 4000
+  port: 4000 # koa server port
 
 serverTap:
   http: http://localhost:4567/v1
@@ -12,7 +11,9 @@ bot:
 
 groupId: 
 botId: 
-whiteList:
-blackList:
+whiteList: 
+blackList: 
 
-deathLog: false
+deathLog: false # need DeathMessages
+
+serverName: Minecraft

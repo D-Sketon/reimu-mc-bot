@@ -1,6 +1,13 @@
 import axios from "axios";
 import { config } from "../../config";
 
+import pino from "pino";
+const logger = pino({
+  transport: {
+    target: 'pino-pretty'
+  },
+});
+
 const instance = axios.create({
   baseURL: config.serverTap.http,
   timeout: 5000,
@@ -11,7 +18,7 @@ instance.interceptors.response.use(
     return response.data;
   },
   async (error) => {
-    console.log(error);
+    logger.error(error);
     return Promise.reject(error);
   }
 );

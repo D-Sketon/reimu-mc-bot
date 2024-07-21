@@ -1,5 +1,13 @@
 import websocket from "websocket";
 import { config } from "../../config";
+import { sendMessage } from "../bot/message";
+
+import pino from "pino";
+const logger = pino({
+  transport: {
+    target: 'pino-pretty'
+  },
+});
 
 export interface Message {
   msg: string;
@@ -10,7 +18,7 @@ const { client: WebSocketClient } = websocket;
 const client = new WebSocketClient();
 
 client.on("connectFailed", (error) => {
-  console.log("Connect Error: " + error.toString());
+  logger.error("Connect Error: " + error.toString());
 });
 
 const messageQueue: Message[] = [];
@@ -39,7 +47,7 @@ const createHeartCheck = (connection: websocket.connection) => {
   const start = () => {
     timeoutObj = setTimeout(() => {
       connection.send("ping");
-      console.log("ping!");
+      logger.debug("ping!");
       serverTimeoutObj = setTimeout(() => {
         connection.close();
       }, 60000);
@@ -51,16 +59,19 @@ const createHeartCheck = (connection: websocket.connection) => {
 
 export const initWebsocket = (callback?: (msgs: Message) => void) => {
   client.on("connect", function (connection) {
-    console.log("WebSocket Client Connected");
+    logger.debug("WebSocket Client Connected");
+    sendMessage("少女祈祷中... WebSocket Client 连接成功...");
     const heartCheck = createHeartCheck(connection);
     heartCheck.reset();
     heartCheck.start();
     connection.on("error", (error) => {
-      console.log("Connection Error: " + error.toString());
+      logger.error("Connection Error: " + error.toString());
+      sendMessage("WebSocket Client 连接错误，尝试重连...");
       reconnect(callback);
     });
     connection.on("close", () => {
-      console.log("echo-protocol Connection Closed");
+      logger.debug("echo-protocol Connection Closed");
+      sendMessage("WebSocket Client 连接关闭，尝试重连...");
       reconnect(callback);
     });
     connection.on("message", (message) => {

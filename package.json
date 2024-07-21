@@ -10,6 +10,8 @@
     "js-yaml": "^4.1.0",
     "koa": "^2.15.3",
     "koa-bodyparser": "^4.4.1",
+    "pino": "^9.3.1",
+    "pino-pretty": "^11.2.1",
     "tsx": "^4.16.2",
     "typescript": "^5.5.3",
     "websocket": "^1.0.35"

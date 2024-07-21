@@ -12,6 +12,13 @@ import { whiteListFilter } from "./core/filter/whiteList";
 import { blackListFilter } from "./core/filter/blackList";
 import { groupFilter } from "./core/filter/group";
 
+import pino from "pino";
+const logger = pino({
+  transport: {
+    target: 'pino-pretty'
+  },
+});
+
 export interface Body {
   group_id: number;
   user_id: number;
@@ -37,15 +44,18 @@ app.use(async (ctx) => {
   const msg = body.message[1].data.text.trim();
   const message = await httpProcessor(msg);
   if (Array.isArray(message)) {
-    message.forEach((m) => sendMessage(m));
+    message.forEach((m) => {
+      sendMessage(m);
+      logger.info(m);
+    });
   } else {
     sendMessage(message);
+    logger.info(message);
   }
 });
 
 app.listen(config.server.port, () => {
-  sendMessage("少女祈祷中...");
-  console.log(`Server is running on port ${config.server.port}`);
+  logger.info(`Server is running on port ${config.server.port}`);
 });
 
 initWebsocket((msg) => {

@@ -18,6 +18,7 @@ interface Config {
     port: number;
   },
   deathLog: boolean;
+  serverName: string;
 }
 
 export const config = jsYaml.load(
