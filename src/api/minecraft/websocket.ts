@@ -1,13 +1,7 @@
 import websocket from "websocket";
 import { config } from "../../config";
 import { sendMessage } from "../bot/message";
-
-import pino from "pino";
-const logger = pino({
-  transport: {
-    target: 'pino-pretty'
-  },
-});
+import logger from "../../utils/logger";
 
 export interface Message {
   msg: string;

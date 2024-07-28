@@ -1,12 +1,6 @@
 import axios from "axios";
 import { config } from "../../config";
-
-import pino from "pino";
-const logger = pino({
-  transport: {
-    target: 'pino-pretty'
-  },
-});
+import logger from "../../utils/logger";
 
 const instance = axios.create({
   baseURL: config.serverTap.http,

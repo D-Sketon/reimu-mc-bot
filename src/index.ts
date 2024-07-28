@@ -12,12 +12,7 @@ import { whiteListFilter } from "./core/filter/whiteList";
 import { blackListFilter } from "./core/filter/blackList";
 import { groupFilter } from "./core/filter/group";
 
-import pino from "pino";
-const logger = pino({
-  transport: {
-    target: 'pino-pretty'
-  },
-});
+import logger from "./utils/logger";
 
 export interface Body {
   group_id: number;
@@ -63,6 +58,7 @@ initWebsocket((msg) => {
     let message: string | undefined;
     if ((message = websocketProcessor(msg))) {
       sendMessage(message);
+      logger.info(message);
     }
   } catch (e) {}
 });
