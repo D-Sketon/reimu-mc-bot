@@ -3,18 +3,20 @@ import { death } from "./death";
 import { login } from "./login";
 import { logout } from "./logout";
 
+const processors: ((msg: Message) => string | undefined)[] = [
+  login,
+  logout,
+  death,
+];
+
 export default (msg: Message) => {
   if (Date.now() - msg.ts > 30000) {
     return;
   }
   let message: string | undefined;
-  if ((message = login(msg))) {
-    return message;
-  }
-  if ((message = logout(msg))) {
-    return message;
-  }
-  if ((message = death(msg))) {
-    return message;
+  for (const processor of processors) {
+    if ((message = processor(msg))) {
+      return message;
+    }
   }
 };

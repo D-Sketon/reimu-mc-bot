@@ -1,7 +1,7 @@
 import { allPlayers } from "../../../api/minecraft/player";
 import { server } from "../../../api/minecraft/server";
 
-export const serverStatus = async () => {
+const serverStatus = async () => {
   const data = await server();
   const res: string[] = [];
   res.push("名称: " + data.name);
@@ -18,4 +18,13 @@ export const serverStatus = async () => {
   const players = await allPlayers();
   res.push("在线玩家数量: " + (players ? players.length : 0));
   return res.join("\n");
+};
+
+const guard = (msg: string) => {
+  return msg === "服务器状态";
+};
+
+export default {
+  guard,
+  processor: serverStatus,
 };

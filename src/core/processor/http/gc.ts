@@ -1,5 +1,14 @@
 import { command } from "../../../api/minecraft/server";
 
-export const gc = async () => {
+const gc = async () => {
   return await command("gc");
+};
+
+const guard = (msg: string) => {
+  return msg === "gc";
+};
+
+export default {
+  guard,
+  processor: gc,
 };

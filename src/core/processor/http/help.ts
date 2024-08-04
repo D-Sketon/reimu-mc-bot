@@ -1,4 +1,4 @@
-export const help = () => {
+const help = () => {
   const help = [
     "服务器状态: 查询服务器状态",
     "在线玩家: 查询在线玩家",
@@ -9,4 +9,13 @@ export const help = () => {
     "关闭死亡: 关闭死亡log",
   ];
   return help.join("\n");
+};
+
+const guard = (msg: string) => {
+  return msg === "帮助" || msg === "help";
+};
+
+export default {
+  guard,
+  processor: help,
 };
