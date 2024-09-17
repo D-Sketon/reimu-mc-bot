@@ -1,5 +1,5 @@
 # reimu-mc-bot
-A Minecraft bot for the Peach Colony, based on NapCat, [ServerTap](https://github.com/servertap-io/servertap) v0.1.3 and [DeathMessages](https://github.com/Winds-Studio/DeathMessages)(death log support)
+A Minecraft bot, based on NapCat, [ServerTap](https://github.com/servertap-io/servertap) v0.1.3 and [DeathMessages](https://github.com/Winds-Studio/DeathMessages)(death log support)
 
 ## Usage
 ```bash
@@ -16,3 +16,4 @@ npm run start
 - tps: 查询服务器TPS
 - 开启死亡: 开启死亡log
 - 关闭死亡: 关闭死亡log
+- memory: 查询服务器内存使用情况

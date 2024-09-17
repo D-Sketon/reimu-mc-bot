@@ -17,3 +17,13 @@ blackList:
 deathLog: false # need DeathMessages
 
 serverName: Minecraft
+
+# https://github.com/D-Sketon/megumu
+monitor:
+  memory:
+    enable: false
+    target: OS
+    type: GE
+    value:
+    duration:  
+    interval: 10000
