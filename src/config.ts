@@ -19,6 +19,16 @@ interface Config {
   },
   deathLog: boolean;
   serverName: string;
+  monitor: {
+    memory: {
+      enable: boolean;
+      target: string;
+      type: string;
+      value: string | number;
+      duration: number;
+      interval: number;
+    }
+  }
 }
 
 export const config = jsYaml.load(

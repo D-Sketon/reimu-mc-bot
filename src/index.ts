@@ -4,7 +4,7 @@ import bodyParser from "koa-bodyparser";
 import { initWebsocket } from "./api/minecraft/websocket";
 
 import { config } from "./config";
-import { sendMessage } from "./api/bot/message";
+import { sendMessage, sendMessageImg } from "./api/bot/message";
 import websocketProcessor from "./core/processor/websocket";
 import httpProcessor from "./core/processor/http";
 
@@ -43,9 +43,13 @@ app.use(async (ctx) => {
       sendMessage(m);
       logger.info(m);
     });
-  } else {
+  } else if (typeof message === "string") {
     sendMessage(message);
     logger.info(message);
+  } else if (message instanceof Buffer) {
+    const base64 = "base64://" + message.toString("base64");
+    sendMessageImg(msg, base64);
+    logger.info(base64);
   }
 });
 

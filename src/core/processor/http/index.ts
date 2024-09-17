@@ -6,12 +6,13 @@ import tps from "./tps";
 import help from "./help";
 import turnOnDeathLog from "./deathLog/turnOnDeathLog";
 import turnOffDeathLog from "./deathLog/turnOffDeathLog";
+import megumu from "./megumu";
 
 const processors: {
   guard: (msg: string) => boolean;
   processor: (
     ...args: string[]
-  ) => Promise<string | string[]> | string | string[];
+  ) => Promise<string | string[] | Buffer | undefined> | string | string[];
 }[] = [
   onlinePlayer,
   onlinePlayers,
@@ -21,6 +22,7 @@ const processors: {
   help,
   turnOnDeathLog,
   turnOffDeathLog,
+  megumu,
 ];
 
 export default async (msg: string) => {

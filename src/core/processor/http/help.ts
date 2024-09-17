@@ -7,6 +7,7 @@ const help = () => {
     "tps: 查询服务器TPS",
     "开启死亡: 开启死亡log",
     "关闭死亡: 关闭死亡log",
+    "memory: 查询服务器内存使用情况",
   ];
   return help.join("\n");
 };

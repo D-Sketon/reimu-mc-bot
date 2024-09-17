@@ -12,3 +12,19 @@ export const sendMessage = (msg: string) => {
     logger.error(e);
   }
 };
+
+export const sendMessageImg = (msg: string, base64: string) => {
+  try {
+    axios.post(`${config.bot.http}/send_group_msg`, {
+      group_id: config.groupId,
+      message: {
+        type: "image",
+        data: {
+          file: base64,
+        },
+      },
+    });
+  } catch (e) {
+    logger.error(e);
+  }
+};
